@@ -1,0 +1,379 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #020108; /* Deep space color */
+  color: white;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#cosmic-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -3;
+  pointer-events: none;
+}
+
+/* Cosmic Nebula Glow */
+.cursor-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(130, 60, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -2;
+  top: 0; 
+  left: 0;
+  transform: translate(-50%, -50%);
+  filter: blur(50px);
+}
+
+.navbar {
+  background: rgba(2, 1, 8, 0.7);
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar a.active {
+  color: #ff2a2a;
+  background: rgba(255, 42, 42, 0.1);
+  box-shadow: 0 4px 15px rgba(255, 42, 42, 0.2);
+  border: 1px solid rgba(255, 42, 42, 0.3);
+}
+
+.hero {
+  text-align: center;
+  padding: 40px;
+}
+
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px rgba(255, 42, 42, 0.15);
+}
+
+section {
+  padding: 40px;
+  text-align: center;
+}
+
+.skills-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 25px;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(130, 60, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(130, 60, 255, 0.4);
+}
+
+.skill-card img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.skill-card span {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* === Projects Grid === */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.project-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(var(--accent-rgb, 255, 42, 42), 0.3);
+  border-color: rgba(var(--accent-rgb, 255, 42, 42), 0.6);
+}
+
+.project-card .project-logo {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 0 8px rgba(var(--accent-rgb, 255, 255, 255), 0.2));
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-logo {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px rgba(var(--accent-rgb, 255, 255, 255), 0.6));
+}
+
+.project-card .project-data {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  flex-grow: 1;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.project-card:hover .project-data {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(var(--accent-rgb, 255, 255, 255), 0.8);
+  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.project-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.project-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* === Certificates Grid === */
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.certificate-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.certificate-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(var(--accent-rgb, 255, 42, 42), 0.3);
+  border-color: rgba(var(--accent-rgb, 255, 42, 42), 0.6);
+}
+
+.certificate-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.certificate-card:hover .certificate-img {
+  border-color: rgba(var(--accent-rgb, 255, 255, 255), 0.8);
+  filter: drop-shadow(0 0 10px rgba(var(--accent-rgb, 255, 255, 255), 0.4));
+}
+
+.certificate-card .project-data {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  flex-grow: 1;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.certificate-card:hover .project-data {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(var(--accent-rgb, 255, 255, 255), 0.8);
+  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.certificate-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.certificate-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* === Contact Links === */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px 25px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.contact-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(10px);
+  box-shadow: 0 5px 15px rgba(255, 42, 42, 0.2);
+  border-color: rgba(255, 42, 42, 0.4);
+}
+
+.contact-card svg {
+  stroke: #ff2a2a;
+}
+
+/* === Custom Animated Cursor Styles === */
+
+/* Hide default cursor on desktop */
+@media (pointer: fine) {
+  body, a, button, .project {
+    cursor: none;
+  }
+}
+
+/* Hide custom cursor on mobile touch screens */
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* The solid bright core dot (now a red mouse cursor) */
+.cursor-dot {
+  position: fixed;
+  width: 28px;
+  height: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 2l16 10-7 2 5 7-3 2-5-7-5 5z' fill='%23ff2a2a' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  /* Small offset to align the actual SVG tip to the exact mouse coordinates */
+  transform: translate(-1px, -1px);
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
+}
+
+/* The trailing element (now a glowing ghost outline of the red cursor) */
+.cursor-ring {
+  position: fixed;
+  width: 28px;
+  height: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 2l16 10-7 2 5 7-3 2-5-7-5 5z' fill='rgba(255, 42, 42, 0.2)' stroke='%23ff2a2a' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  transform: translate(-1px, -1px);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 12px rgba(255, 42, 42, 0.6));
+}
+
+/* Interactive Hover state for the trailing cursor when over links */
+.cursor-ring.hovering {
+  transform: translate(-1px, -1px) scale(1.4);
+  filter: drop-shadow(0 0 20px rgba(255, 42, 42, 1));
+}
