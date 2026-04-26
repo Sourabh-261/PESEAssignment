@@ -93,6 +93,41 @@ section {
   text-align: center;
 }
 
+/* === About Me Section === */
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-content p {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px 30px;
+  border-radius: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  margin: 0;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.about-content p:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 42, 42, 0.3);
+}
+
+.highlight {
+  color: #ff2a2a;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 42, 42, 0.4);
+}
+
 .skills-grid {
   display: flex;
   justify-content: center;
