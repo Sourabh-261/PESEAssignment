@@ -146,5 +146,29 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animate);
     }
     
+    // === 4. Learnings Page Navigation ===
+    const dayBtns = document.querySelectorAll('.day-btn');
+    const dayPanes = document.querySelectorAll('.day-pane');
+
+    if (dayBtns.length > 0 && dayPanes.length > 0) {
+        dayBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                dayBtns.forEach(b => b.classList.remove('active'));
+                dayPanes.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding pane
+                const targetId = btn.getAttribute('data-day');
+                const targetPane = document.getElementById(targetId);
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                }
+            });
+        });
+    }
+
     animate();
 });

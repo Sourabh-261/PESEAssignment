@@ -412,3 +412,116 @@ section {
   transform: translate(-1px, -1px) scale(1.4);
   filter: drop-shadow(0 0 20px rgba(255, 42, 42, 1));
 }
+
+/* === Learnings Page Layout === */
+.days-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto 30px auto;
+  padding: 0 20px;
+}
+
+.day-btn {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Rainbow Gradient Colors for buttons */
+.day-btn:nth-child(1) { --hue: 0; }
+.day-btn:nth-child(2) { --hue: 36; }
+.day-btn:nth-child(3) { --hue: 72; }
+.day-btn:nth-child(4) { --hue: 108; }
+.day-btn:nth-child(5) { --hue: 144; }
+.day-btn:nth-child(6) { --hue: 180; }
+.day-btn:nth-child(7) { --hue: 216; }
+.day-btn:nth-child(8) { --hue: 252; }
+.day-btn:nth-child(9) { --hue: 288; }
+.day-btn:nth-child(10) { --hue: 324; }
+
+.day-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 30px;
+  padding: 2px;
+  background: linear-gradient(135deg, hsl(var(--hue), 100%, 60%), hsl(calc(var(--hue) + 40), 100%, 60%));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.day-btn:hover {
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px hsla(var(--hue), 100%, 60%, 0.3);
+}
+
+.day-btn:hover::before {
+  opacity: 1;
+}
+
+.day-btn.active {
+  color: #020108;
+  background: linear-gradient(135deg, hsl(var(--hue), 100%, 60%), hsl(calc(var(--hue) + 40), 100%, 60%));
+  box-shadow: 0 0 20px hsla(var(--hue), 100%, 60%, 0.5);
+  border-color: transparent;
+}
+
+.day-btn.active::before {
+  display: none;
+}
+
+.day-content-display {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.day-pane {
+  display: none;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.day-pane.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.day-pane .project-data {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.day-pane h3 {
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 15px;
+}
